@@ -95,7 +95,13 @@ def get_max_salary(path):
     int
         The maximum salary paid out of all job opportunities
     """
-    pass
+    all_salary = read(path)
+    select_salary = [
+        int(salary['max_salary'])
+        for salary in all_salary if salary["max_salary"].isnumeric()
+    ]
+    no_repeat = set(filter(None, select_salary))
+    return max(no_repeat)
 
 
 def get_min_salary(path):
